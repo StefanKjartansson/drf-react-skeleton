@@ -1,6 +1,15 @@
 #!/bin/bash
 
-testfile=${1-all}
+set -e
+
+NAME=${PROJECT:-project}
+DJANGO_SETTINGS_MODULE="$NAME".settings
+SECRET_KEY=${SECRET_KEY:-foobar}
+DATABASE_URL=${DATABASE_URL:-"postgres://ubuntu:@localhost/$PROJECT"}
+
+DJANGO_SETTINGS_MODULE="$DJANGO_SETTINGS_MODULE" SECRET_KEY="$SECRET_KEY" DATABASE_URL="$DATABASE_URL" py.test
+
+testfile=${1:-all}
 
 if [ "$testfile" = "all" ]
 then
