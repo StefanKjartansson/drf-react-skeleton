@@ -1,9 +1,6 @@
-const FRONTEND_DIR = process.env.FRONTEND_DIR || './frontend';
-const PROJECT = process.env.PROJECT || 'project';
-const DIST_PATH = process.env.DIST_PATH || `${PROJECT}/static/${PROJECT}`;
+import path from 'path';
 
-export default {
-  FRONTEND_DIR: FRONTEND_DIR,
-  DIST_PATH: DIST_PATH,
-  PROJECT: PROJECT,
-};
+export const FRONTEND_DIR = path.join(__dirname, 'frontend');
+export const SCSS_PATH = path.join(__dirname, 'scss');
+export const PROJECT = (process.env.PROJECT !== undefined) ? process.env.PROJECT : 'project';
+export const DIST_PATH = path.join(__dirname, `${PROJECT}/static/${PROJECT}`);
