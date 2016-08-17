@@ -2,19 +2,46 @@ import _ from 'underscore';
 import React from 'react';
 import API from '../api';
 
-export default class Login extends React.Component {
+import {Form, Input, Button} from 'antd';
 
-  constructor() {
-    super();
-    this.state = {
-      user: '',
-      password: '',
-      userErrorText: '',
-      passwordErrorText: '',
-      hasError: false,
-    };
+const FormItem = Form.Item;
+
+class Login extends React.Component {
+
+	state = {
+		user: '',
+		password: '',
+		userErrorText: '',
+		passwordErrorText: '',
+		hasError: false,
+	};
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('收到表单值：', this.props.form.getFieldsValue());
+    // API.auth.login(this.state.user, this.state.password)
   }
 
+  render() {
+    return (
+     <Form horizontal onSubmit={this.handleSubmit}>
+        <FormItem
+          label="失败校验"
+          labelCol={{span: 5}}
+          wrapperCol={{span: 12}}
+          validateStatus="error"
+          help="请输入数字和字母组合"
+        >
+          <Input defaultValue="无效选择" id="error" />
+        </FormItem>
+        <FormItem wrapperCol={{ span: 16, offset: 6 }} style={{ marginTop: 24 }}>
+          <Button type="primary" htmlType="submit">确定</Button>
+        </FormItem>
+      </Form>
+    );
+  }
+
+  /*
   login(e) {
     e.preventDefault();
     API.auth.login(this.state.user, this.state.password)
@@ -86,14 +113,8 @@ export default class Login extends React.Component {
       </button>
     );
   }
+  */
 
-  render() {
-    return (
-      <div className={'login'}>
-        {this.userField}
-        {this.passwordField}
-        {this.loginButton}
-      </div>
-    );
-  }
 }
+
+export default Form.create()(Login);
