@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import React from 'react';
-import Auth from '../services/AuthService';
+import API from '../api';
 
 export default class Login extends React.Component {
 
@@ -17,7 +17,7 @@ export default class Login extends React.Component {
 
   login(e) {
     e.preventDefault();
-    Auth.login(this.state.user, this.state.password)
+    API.auth.login(this.state.user, this.state.password)
       .catch((err) => {
         let rt = JSON.parse(err.responseText);
         let stateUpdate = {
