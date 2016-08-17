@@ -26,5 +26,7 @@
     "webpack-merge": "^0.14.1",
     "webpack-validator": "^2.2.7"
   },
-  "scripts": {}
+  "scripts": {
+    "build": "babel-node ./node_modules/.bin/webpack build"
+  }
 }
