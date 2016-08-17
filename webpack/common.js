@@ -12,11 +12,12 @@ export default merge(
         `${FRONTEND_DIR}/app.js`,
       ],
       output: {
-        path:       DIST_PATH,
-        filename:   `${PROJECT}.js`,
+        path: DIST_PATH,
+        filename: `${PROJECT}.js`,
       },
       module: {
         loaders: [
+					{test: /\.css$/, loader: "style-loader!css-loader"},
           {
             test:     /\.json$/,
             include:  FRONTEND_DIR,
