@@ -1,0 +1,23 @@
+{% load staticfiles %}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Project</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      var WebFontConfig = {
+        google: { families: [ 'Open+Sans:400,400italic,600:latin,latin-ext' ] },
+      };
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js" async="true" rel="preconnect"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" async="true" rel="preconnect"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+        window.csrf_token = '{{ csrf_token }}';
+    </script>
+    <script src="{% static 'common/project.js' %}" rel="preconnect"></script>
+  </body>
+</html>
