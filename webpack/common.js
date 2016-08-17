@@ -25,7 +25,7 @@ export default merge(
           {
             test:     /\.js?$/,
             include:  FRONTEND_DIR,
-            loaders:  ['babel?cacheDirectory'],
+            loaders:  ['babel'],
           },
         ],
       },
