@@ -17,4 +17,5 @@ INSTALLED_APPS = (
     'rest_framework_jwt',
     'django_extensions',
 
+    'project',
 )
