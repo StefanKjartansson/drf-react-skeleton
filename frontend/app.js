@@ -1,32 +1,33 @@
 import React from 'react';
-// Needed for React Developer Tools
+import ReactDOM from 'react-dom';
+
+import API from './api';
+
+import {routes} from './routes';
+
+// needed for React Developer Tools
 window.React = React;
 
-import Router, {Route, DefaultRoute, NotFoundRoute} from 'react-router';
-import RouterContainer from './services/RouterContainer';
+const checkToken = () => {
+  let jwt = localStorage.getItem('jwt');
+  if (
+    jwt
+    && jwt !== undefined
+    && jwt !== null
+    && jwt !== 'undefined'
+  ) {
+    API.auth.verify(jwt);
+  }
+  // check token every 30 minutes
+  setTimeout(checkToken, 1000 * 60 * 30);
+};
 
-import AuthService from './services/AuthService';
-import Master from './master';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import ErrorPage from './pages/ErrorPage';
+checkToken();
 
-var routes = (
-  <Route handler={Master}>
-    <DefaultRoute name="home" handler={Home}/>
-    <Route name="login" handler={Login}/>
-    <NotFoundRoute handler={ErrorPage}/>
-  </Route>
-);
+const app = document.getElementById('app');
 
-var router = Router.create({routes});
-RouterContainer.set(router);
-
-let jwt = localStorage.getItem('jwt');
-if (jwt && jwt !== undefined && jwt !== null && jwt !== 'undefined') {
-  AuthService.verify(jwt);
+try {
+  ReactDOM.render(routes, app);
+} catch (e) {
+  console.error(e);
 }
-
-router.run(function (Handler) {
-  React.render(<Handler />, document.body);
-});
