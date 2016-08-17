@@ -1,0 +1,18 @@
+FROM python:3.5
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+RUN pip install --upgrade pip
+RUN pip install wheel
+
+ENV WHEELHOUSE=/wheelhouse
+ENV PIP_WHEEL_DIR=/wheelhouse
+ENV PIP_FIND_LINKS=/wheelhouse
+
+VOLUME /wheelhouse
+
+# Add requirements.txt
+COPY requirements.txt /usr/src/app/
+
+ENTRYPOINT pip wheel -r requirements.txt

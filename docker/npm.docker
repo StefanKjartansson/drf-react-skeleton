@@ -1,0 +1,10 @@
+FROM node:5
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+VOLUME /usr/src/app/node_modules
+
+COPY package.json /usr/src/app/
+
+ENTRYPOINT npm install

@@ -1,0 +1,25 @@
+FROM python:3.5-slim
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+ENV SECRET_KEY=dummyvalue
+ENV DJANGO_SETTINGS_MODULE=project.settings
+
+# Install pip and wheel
+RUN pip install --upgrade pip wheel
+
+# Mount the wheelhouse
+ADD wheelhouse wheelhouse
+
+# Add requirements.txt
+COPY requirements.txt /usr/src/app/
+RUN pip install --no-index -f wheelhouse -r requirements.txt
+
+COPY . /usr/src/app
+
+RUN python manage.py collectstatic --noinput
+
+EXPOSE 8000
+
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "--pythonpath", "$PWD", "wsgi"]

@@ -1,0 +1,14 @@
+FROM node:5
+
+ENV NODE_ENV production
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+ADD node_modules node_modules
+
+COPY package.json /usr/src/app/
+RUN npm rebuild
+COPY . /usr/src/app
+
+CMD ["webpack", "build"]
