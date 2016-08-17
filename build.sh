@@ -69,7 +69,7 @@ function frontend {
 		-v $target:/usr/src/app/"$DIST_PATH" \
 		$image \
         sh -c "npm run build && chown -R $OWNER_UID:$OWNER_UID ."
-    gzip --keep $target/*.{js,css}
+    gzip --keep $target/*.js
     log "SUCCESS" "Finished ${FUNCNAME[0]}"
 }
 
