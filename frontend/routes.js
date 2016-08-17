@@ -10,6 +10,7 @@ import {
 import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Master from './master';
 
 import LoginStore, {AuthCheck, UserWrapper} from 'stores/LoginStore';
 

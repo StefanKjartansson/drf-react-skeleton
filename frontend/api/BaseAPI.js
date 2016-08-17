@@ -24,12 +24,12 @@ export default class BaseService {
     });
   }
 
-  headers() {
+  getHeaders(includeToken) {
     let h = new Headers();
 
     h.set('Content-Type', 'application/json');
 
-    if (this.token) {
+    if (includeToken && this.token) {
       h.set('Authorization', `JWT ${this.token}`);
     }
 
@@ -52,8 +52,8 @@ export default class BaseService {
     return `/api/${_.compact(Array.from(arguments)).join('/')}/`;
   }
 
-  makeRequest(url, method = 'GET', data = null) {
-    const headers = this.headers;
+  makeRequest(url, method = 'GET', data = null, includeToken = true) {
+    const headers = this.getHeaders(includeToken);
     let context = {
       method,
       headers,

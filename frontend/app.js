@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import API from './api';
 
+import 'antd/dist/antd.css';
+
 import {routes} from './routes';
 
 // needed for React Developer Tools
