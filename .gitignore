@@ -22,4 +22,5 @@ env
 *.tar.gz
 *.md5
 node_modules
+wheelhouse
 .vagrant
