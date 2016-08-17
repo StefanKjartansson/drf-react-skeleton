@@ -16,6 +16,8 @@ class Login extends React.Component {
 		hasError: false,
 	};
 
+  handleSubmit = this.handleSubmit.bind(this);
+
   handleSubmit(e) {
     e.preventDefault();
     console.log('收到表单值：', this.props.form.getFieldsValue());
