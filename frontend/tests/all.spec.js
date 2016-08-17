@@ -1,3 +1,0 @@
-describe('Components', () => {
-  require('./dummy');
-});
