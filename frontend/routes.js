@@ -9,7 +9,7 @@ import {
 
 import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
-import LogIn from './pages/LogIn';
+import Login from './pages/Login';
 
 import LoginStore, {AuthCheck, UserWrapper} from 'stores/LoginStore';
 
@@ -20,7 +20,7 @@ function createElement(Component, props) {
 export const routes = (
   <Router history={hashHistory} createElement={createElement}>
     <Route path="/" component={Master} onEnter={AuthCheck}>
-      <Route path="login" component={LogIn}/>
+      <Route path="login" component={Login}/>
       <IndexRoute component={Home}/>
       <Route path="*" component={ErrorPage}/>
     </Route>
