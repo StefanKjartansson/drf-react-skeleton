@@ -20,3 +20,4 @@ env
 *.tar.gz
 *.md5
 .vagrant
+!.babelrc
