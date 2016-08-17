@@ -1,3 +1,4 @@
+.cache
 .svn*
 *.exe
 *.pdb
@@ -10,19 +11,15 @@ dist/
 *.py[oc]
 *sw[po]
 distribute-*
-*.iml
 .DS_Store
 *.db
 .coverage
 .noseids
-.idea*
 *.egg-info
 env
-*.sublime-workspace
 *.sqlite
 .~lock.*
 *.tar.gz
 *.md5
 node_modules
 .vagrant
-.sublime-gulp.cache
