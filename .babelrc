@@ -15,7 +15,6 @@
     },
     "production": {
       "presets": [
-        "react-optimize"
       ]
     }
   }
