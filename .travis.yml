@@ -1,0 +1,6 @@
+language: python
+
+python:
+  - 3.5
+
+script: SECRET_KEY=123abcdef py.test
