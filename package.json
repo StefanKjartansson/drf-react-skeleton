@@ -2,7 +2,7 @@
   "name": "project",
   "dependencies": {
     "antd": "^2.0.1",
-    "flux": "^2.1.1",
+    "flux": "^3.0.0",
     "jwt-decode": "^2.1.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
