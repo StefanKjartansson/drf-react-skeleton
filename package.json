@@ -1,7 +1,7 @@
 {
   "name": "project",
   "dependencies": {
-    "antd": "^2.0.1",
+    "antd": "^2.4.2",
     "flux": "^2.1.1",
     "jwt-decode": "^2.1.0",
     "react": "^15.2.1",
