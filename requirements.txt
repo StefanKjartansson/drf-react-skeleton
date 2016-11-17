@@ -1,7 +1,7 @@
 dj-database-url==0.4.1
 Django==1.10.3
 django-extensions==1.7.4
-django-filter==0.15.3
+django-filter==1.0.0
 djangorestframework==3.5.3
 djangorestframework-jwt==1.8.0
 gunicorn==19.6.0
