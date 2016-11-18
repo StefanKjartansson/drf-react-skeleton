@@ -1,13 +1,12 @@
 {
   "name": "project",
   "dependencies": {
-    "antd": "^2.0.1",
+    "flexbox-react": "^4.1.0",
     "flux": "^2.1.1",
     "jwt-decode": "^2.1.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-router": "^2.6.1",
-    "underscore": "^1.8.3"
+    "react-router": "^2.6.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -15,7 +14,6 @@
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.3",
-    "babel-plugin-antd": "^0.5.1",
     "babel-plugin-import-asserts": "^2.1.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-runtime": "^6.9.0",
