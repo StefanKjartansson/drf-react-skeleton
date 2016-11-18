@@ -1,77 +1,62 @@
-import _ from 'underscore';
 import React from 'react';
 import API from '../api';
 
-import {Form, Input, Button} from 'antd';
 
-const FormItem = Form.Item;
+export default class Login extends React.Component {
 
-class Login extends React.Component {
+  state = {
+    username: '',
+    password: '',
+    usernameErrorText: '',
+    passwordErrorText: '',
+    hasError: false,
+  };
 
-	state = {
-		user: '',
-		password: '',
-		userErrorText: '',
-		passwordErrorText: '',
-		hasError: false,
-	};
+  login = this.login.bind(this);
 
-  handleSubmit = this.handleSubmit.bind(this);
-
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log('收到表单值：', this.props.form.getFieldsValue());
-    // API.auth.login(this.state.user, this.state.password)
-  }
-
-  render() {
-    return (
-     <Form horizontal onSubmit={this.handleSubmit}>
-        <FormItem
-          label="失败校验"
-          labelCol={{span: 5}}
-          wrapperCol={{span: 12}}
-          validateStatus="error"
-          help="请输入数字和字母组合"
-        >
-          <Input defaultValue="无效选择" id="error" />
-        </FormItem>
-        <FormItem wrapperCol={{ span: 16, offset: 6 }} style={{ marginTop: 24 }}>
-          <Button type="primary" htmlType="submit">确定</Button>
-        </FormItem>
-      </Form>
-    );
-  }
-
-  /*
   login(e) {
-    e.preventDefault();
-    API.auth.login(this.state.user, this.state.password)
-      .catch((err) => {
-        let rt = JSON.parse(err.responseText);
+
+    e && e.preventDefault();
+
+    const {
+      username,
+      password,
+    } = this.state;
+
+    API.auth.login(username, password)
+      .catch(obj => {
+
         let stateUpdate = {
-          userErrorText: '',
+          usernameErrorText: '',
           passwordErrorText: '',
-          hasError: false,
+          hasError: true,
         };
-        if (_.has(rt, 'username')) {
-          stateUpdate.userErrorText = rt.username.join(' ');
-          stateUpdate.hasError = true;
-        }
-        if (_.has(rt, 'password')) {
-          stateUpdate.passwordErrorText = rt.password.join(' ');
-          stateUpdate.hasError = true;
-        }
-        if (_.has(rt, 'non_field_errors')) {
-          stateUpdate.userErrorText = '';
-          stateUpdate.passwordErrorText = rt.non_field_errors.join(' ');
-          stateUpdate.hasError = true;
+
+        ['username', 'password'].forEach(key => {
+          if (obj.hasOwnProperty(key)) {
+            stateUpdate[`${key}ErrorText`] = obj[key].join(', ');
+          }
+        });
+
+        if (obj.hasOwnProperty('non_field_errors')) {
+          stateUpdate.usernameErrorText = '';
+          stateUpdate.passwordErrorText = obj.non_field_errors.join(', ');
         }
         this.setState(stateUpdate);
       });
   }
 
-  get userField() {
+  render() {
+    return (
+      <form onSubmit={this.login}>
+        {this.usernameField}
+        {this.passwordField}
+        {this.button}
+      </form>
+    );
+  }
+
+  get usernameField() {
     return (
       <input
         type="text"
@@ -80,7 +65,7 @@ class Login extends React.Component {
         onChange={(e) => {
           this.setState({
             userErrorText: '',
-            user: e.target.value,
+            username: e.target.value,
           });
         }}/>
     );
@@ -106,7 +91,14 @@ class Login extends React.Component {
   }
 
   get loginButton() {
-    let enabled = this.state.password !== '' && this.state.user !== '';
+
+    const {
+      username,
+      password,
+    } = this.state;
+
+    const enabled = password !== '' && username !== '';
+
     return (
       <button
         disabled={!enabled}
@@ -115,8 +107,5 @@ class Login extends React.Component {
       </button>
     );
   }
-  */
 
-}
-
-export default Form.create()(Login);
+};
