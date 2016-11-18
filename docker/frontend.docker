@@ -1,14 +1,32 @@
-FROM node:6
+FROM node:7
+
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		curl \
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | \
+	apt-key add -
+
+RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | \
+	tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		yarn \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV NODE_ENV production
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-ADD node_modules node_modules
-
 COPY package.json /usr/src/app/
-RUN npm rebuild
-COPY . /usr/src/app
+RUN yarn install
+COPY .babelrc /usr/src/app/.babelrc
+COPY config.js /usr/src/app/config.js
+COPY webpack /usr/src/app/webpack
+COPY webpack.config.js /usr/src/app/webpack.config.js
+COPY frontend /usr/src/app/frontend
 
 CMD npm run build
