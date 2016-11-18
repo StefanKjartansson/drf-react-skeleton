@@ -20,15 +20,13 @@ const cssnanoConfig = {
 };
 
 export function loadAndExtractCSS() {
-  const include = SCSS_PATH;
   return {
     module: {
       loaders: [
         // extract CSS during build
         {
-          test:   /\.scss$/,
-          loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?errLogToConsole=true'),
-          include,
+          test:   /\.css$/,
+          loader: ExtractTextPlugin.extract('style', 'css?errLogToConsole=true'),
         },
       ],
     },
