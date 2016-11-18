@@ -1,40 +1,39 @@
-'use strict';
-
 import React from 'react';
-import {Row, Col} from 'antd';
+import Flexbox from 'flexbox-react';
 
 
 export default class Master extends React.Component {
 
   render() {
 		return (
-			<div>
+			<Flexbox flexDirection="column" minHeight="100vh">
 				{this.props.user.loggedIn ? this.page : this.single}
-			</div>
+			</Flexbox>
 		);
   }
 
   get page() {
     return (
-			<Row>
-				<Col span={6}>
-					Nav
-				</Col>
-				<Col span={18}>
-					{this.props.children}
-				</Col>
-			</Row>
+      <div>
+        <Flexbox element="header" height="60px">
+          Header
+        </Flexbox>
+        <Flexbox flexGrow={1}>
+          {this.props.children}
+        </Flexbox>
+        <Flexbox element="footer" height="60px">
+          Footer
+        </Flexbox>
+      </div>
     );
   }
 
   get single() {
     return (
-			<Row>
-				<Col span={24}>
-					{this.props.children}
-				</Col>
-			</Row>
+      <Flexbox flexGrow={1}>
+        {this.props.children}
+      </Flexbox>
     );
   }
 
-}
+};
