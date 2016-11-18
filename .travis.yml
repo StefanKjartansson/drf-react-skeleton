@@ -14,9 +14,7 @@ before_install:
   - sudo apt-get install -y -qq yarn
 
 env:
-  - WHEELHOUSE=$TRAVIS_BUILD_DIR/wheelhouse
-  - PIP_WHEEL_DIR=$TRAVIS_BUILD_DIR/wheelhouse
-  - PIP_FIND_LINKS=$TRAVIS_BUILD_DIR/wheelhouse
+  - WHEELHOUSE=$TRAVIS_BUILD_DIR/wheelhouse PIP_WHEEL_DIR=$TRAVIS_BUILD_DIR/wheelhouse PIP_FIND_LINKS=$TRAVIS_BUILD_DIR/wheelhouse
 
 cache:
   directories:
