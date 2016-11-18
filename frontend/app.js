@@ -5,6 +5,8 @@ import API from './api';
 
 import {routes} from './routes';
 
+import "@blueprintjs/core/dist/blueprint.css";
+
 // needed for React Developer Tools
 window.React = React;
 

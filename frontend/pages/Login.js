@@ -55,36 +55,51 @@ export default class Login extends React.Component {
   }
 
   get usernameField() {
+		const {usernameErrorText} = this.state;
     return (
-      <input
-        type="text"
-        autoComplete="off"
-        autoFocus
-        onChange={(e) => {
-          this.setState({
-            usernameErrorText: '',
-            username: e.target.value,
-          });
-        }}/>
+			<label className={`pt-label ${usernameErrorText.length > 0 ? ".pt-intent-warning" : ""}`}>
+				User
+				<div className="pt-input-group">
+					<span className="pt-icon pt-icon-calendar"></span>
+					<input
+						className="pt-input"
+						type="text"
+						autoComplete="off"
+						autoFocus
+						onChange={(e) => {
+							this.setState({
+								usernameErrorText: '',
+								username: e.target.value,
+							});
+						}}/>
+				</div>
+			</label>
     );
   }
 
   get passwordField() {
+		const {passwordErrorText} = this.state;
     return (
-      <input
-        type="password"
-        autoComplete="off"
-        onChange={(e) => {
-          this.setState({
-            passwordErrorText: '',
-            password: e.target.value,
-          });
-        }}
-        onKeyDown={(e) => {
-          if (e.which === 13) {
-            this.login(e);
-          }
-        }}/>
+			<label className={`pt-label ${passwordErrorText.length > 0 ? ".pt-intent-warning" : ""}`}>
+				Password
+				<div className="pt-input-group">
+					<span className="pt-icon pt-icon-calendar"></span>
+					<input
+						type="password"
+						autoComplete="off"
+						onChange={(e) => {
+							this.setState({
+								passwordErrorText: '',
+								password: e.target.value,
+							});
+						}}
+						onKeyDown={(e) => {
+							if (e.which === 13) {
+								this.login(e);
+							}
+						}}/>
+				</div>
+			</label>
     );
   }
 
@@ -98,10 +113,13 @@ export default class Login extends React.Component {
     const enabled = password !== '' && username !== '';
 
     return (
-      <button
+     	<button
+				type="button"
+				className="pt-button pt-intent-success"
         disabled={!enabled}
         onClick={this.login}>
-      Login
+      	Login
+				<span className="pt-icon-standard pt-icon-log-in pt-align-right"></span>
       </button>
     );
   }
