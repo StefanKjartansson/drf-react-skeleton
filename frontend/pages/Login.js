@@ -1,5 +1,4 @@
 import React from 'react';
-import API from '../api';
 
 
 export default class Login extends React.Component {
@@ -9,7 +8,6 @@ export default class Login extends React.Component {
     password: '',
     usernameErrorText: '',
     passwordErrorText: '',
-    hasError: false,
   };
 
   login = this.login.bind(this);
@@ -23,13 +21,12 @@ export default class Login extends React.Component {
       password,
     } = this.state;
 
-    API.auth.login(username, password)
+    this.props.API.auth.login(username, password)
       .catch(obj => {
 
         let stateUpdate = {
           usernameErrorText: '',
           passwordErrorText: '',
-          hasError: true,
         };
 
         ['username', 'password'].forEach(key => {
@@ -42,13 +39,14 @@ export default class Login extends React.Component {
           stateUpdate.usernameErrorText = '';
           stateUpdate.passwordErrorText = obj.non_field_errors.join(', ');
         }
+
         this.setState(stateUpdate);
       });
   }
 
   render() {
     return (
-      <form onSubmit={this.login}>
+      <form>
         {this.usernameField}
         {this.passwordField}
         {this.button}
@@ -64,7 +62,7 @@ export default class Login extends React.Component {
         autoFocus
         onChange={(e) => {
           this.setState({
-            userErrorText: '',
+            usernameErrorText: '',
             username: e.target.value,
           });
         }}/>
@@ -90,7 +88,7 @@ export default class Login extends React.Component {
     );
   }
 
-  get loginButton() {
+  get button() {
 
     const {
       username,
