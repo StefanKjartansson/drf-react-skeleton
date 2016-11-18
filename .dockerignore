@@ -21,3 +21,4 @@ env
 *.md5
 .vagrant
 !.babelrc
+node_modules
