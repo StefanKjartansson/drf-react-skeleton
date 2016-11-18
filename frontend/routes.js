@@ -11,11 +11,12 @@ import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Master from './master';
+import API from 'api';
 
 import LoginStore, {AuthCheck, UserWrapper} from 'stores/LoginStore';
 
 function createElement(Component, props) {
-  return <UserWrapper Component={Component} {...props}/>;
+  return <UserWrapper Component={Component} API={API} {...props}/>;
 }
 
 export const routes = (
