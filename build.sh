@@ -2,6 +2,10 @@
 
 set -e
 
+if [ "$TRAVIS_BRANCH" != "master" ]; then
+    exit 0
+fi
+
 NAME=${PROJECT:-project}
 DIST_PATH=${DIST_PATH:-"$NAME"/static/"$NAME"}
 OWNER_UID=$(id -u)
