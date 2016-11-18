@@ -20,8 +20,8 @@ env:
 
 cache:
   directories:
-	- $HOME/.yarn-cache
-	- $TRAVIS_BUILD_DIR/wheelhouse
+  - $HOME/.yarn-cache
+  - $TRAVIS_BUILD_DIR/wheelhouse
 
 install:
   - pip install --upgrade pip
