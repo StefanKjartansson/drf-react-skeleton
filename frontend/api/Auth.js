@@ -29,8 +29,14 @@ export default class Auth extends NestedService {
   }
 
   _login(d) {
-    loginUser(d);
-    return d;
+    return new Promise(function(resolve, reject) {
+      if (d.hasOwnProperty('token')) {
+        loginUser(d);
+        resolve(d);
+        return;
+      }
+      reject(d);
+    });
   }
 
   logout() {
