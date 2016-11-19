@@ -1,6 +1,32 @@
 import React from 'react';
 
 
+const Input = props => {
+	const {errorText} = props;
+	const hasError = errorText.length > 0;
+	const errorClass = hasError ? "pt-intent-warning" : "";
+	return (
+		<div>
+			<label className='pt-label'>
+				User
+				<div className="pt-input-group">
+					<span className={`pt-icon ${props.icon}`}></span>
+					<input
+						className={`pt-input ${errorClass}`}
+						{...props}
+					/>
+				</div>
+			</label>
+			{hasError ? (
+				<div className="pt-callout pt-intent-danger">
+					{errorText}
+				</div>
+			) : null}
+		</div>
+	);
+};
+
+
 export default class Login extends React.Component {
 
   state = {
@@ -21,86 +47,85 @@ export default class Login extends React.Component {
       password,
     } = this.state;
 
-    this.props.API.auth.login(username, password)
-      .catch(obj => {
+		this.props.API.auth.login(username, password)
+		.catch(response => {
 
-        let stateUpdate = {
-          usernameErrorText: '',
-          passwordErrorText: '',
-        };
+			response.json()
+				.then(obj => {
 
-        ['username', 'password'].forEach(key => {
-          if (obj.hasOwnProperty(key)) {
-            stateUpdate[`${key}ErrorText`] = obj[key].join(', ');
-          }
-        });
+					let stateUpdate = {
+						usernameErrorText: '',
+						passwordErrorText: '',
+					};
 
-        if (obj.hasOwnProperty('non_field_errors')) {
-          stateUpdate.usernameErrorText = '';
-          stateUpdate.passwordErrorText = obj.non_field_errors.join(', ');
-        }
+					['username', 'password'].forEach(key => {
+						if (obj.hasOwnProperty(key)) {
+							stateUpdate[`${key}ErrorText`] = obj[key].join(', ');
+						}
+					});
 
-        this.setState(stateUpdate);
-      });
-  }
+					if (obj.hasOwnProperty('non_field_errors')) {
+						stateUpdate.usernameErrorText = '';
+						stateUpdate.passwordErrorText = obj.non_field_errors.join(', ');
+					}
+					this.setState(stateUpdate);
+
+				})
+				.catch(err => {
+					console.log(err);
+				});
+
+		});
+	}
 
   render() {
     return (
-      <form>
-        {this.usernameField}
-        {this.passwordField}
-        {this.button}
-      </form>
+			<div className="pt-card pt-elevation-3">
+				<form>
+					{this.usernameField}
+					{this.passwordField}
+					{this.button}
+				</form>
+			</div>
     );
   }
 
   get usernameField() {
-		const {usernameErrorText} = this.state;
-    return (
-			<label className={`pt-label ${usernameErrorText.length > 0 ? ".pt-intent-warning" : ""}`}>
-				User
-				<div className="pt-input-group">
-					<span className="pt-icon pt-icon-calendar"></span>
-					<input
-						className="pt-input"
-						type="text"
-						autoComplete="off"
-						autoFocus
-						onChange={(e) => {
-							this.setState({
-								usernameErrorText: '',
-								username: e.target.value,
-							});
-						}}/>
-				</div>
-			</label>
-    );
+		return (
+			<Input
+				errorText={this.state.usernameErrorText}
+				icon={'pt-icon-person'}
+				type="text"
+				autoComplete="off"
+				autoFocus
+				onChange={(e) => {
+					this.setState({
+						usernameErrorText: '',
+						username: e.target.value,
+					});
+			}}/>
+		);
   }
 
   get passwordField() {
-		const {passwordErrorText} = this.state;
-    return (
-			<label className={`pt-label ${passwordErrorText.length > 0 ? ".pt-intent-warning" : ""}`}>
-				Password
-				<div className="pt-input-group">
-					<span className="pt-icon pt-icon-calendar"></span>
-					<input
-						type="password"
-						autoComplete="off"
-						onChange={(e) => {
-							this.setState({
-								passwordErrorText: '',
-								password: e.target.value,
-							});
-						}}
-						onKeyDown={(e) => {
-							if (e.which === 13) {
-								this.login(e);
-							}
-						}}/>
-				</div>
-			</label>
-    );
+		return (
+			<Input
+				errorText={this.state.passwordErrorText}
+				icon={'pt-icon-dot'}
+				type="password"
+				autoComplete="off"
+				onChange={(e) => {
+					this.setState({
+						passwordErrorText: '',
+						password: e.target.value,
+					});
+				}}
+				onKeyDown={(e) => {
+					if (e.which === 13) {
+						this.login(e);
+					}
+			}}/>
+		);
   }
 
   get button() {
