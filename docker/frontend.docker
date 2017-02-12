@@ -22,7 +22,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
-RUN yarn install
+RUN yarn install --ignore-engines
 COPY .babelrc /usr/src/app/.babelrc
 COPY config.js /usr/src/app/config.js
 COPY webpack /usr/src/app/webpack
