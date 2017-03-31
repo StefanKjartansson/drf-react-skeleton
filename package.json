@@ -23,7 +23,7 @@
     "enzyme": "^2.6.0",
     "expect": "^1.20.2",
     "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.9.0",
+    "file-loader": "^0.11.0",
     "flexbox-react": "^4.1.0",
     "flux": "^3.1.0",
     "jsdom": "^9.8.3",
