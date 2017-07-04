@@ -2,7 +2,7 @@
   "name": "project",
   "dependencies": {
     "@blueprintjs/core": "^1.0.1",
-    "autoprefixer": "^6.7.0",
+    "autoprefixer": "^7.1.0",
     "babel": "^6.5.2",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
