@@ -3,7 +3,7 @@ Django==1.11.3
 django-extensions==1.8.0
 django-filter==1.0.4
 djangorestframework==3.6.3
-djangorestframework-jwt==1.10.0
+djangorestframework-jwt==1.11.0
 gunicorn==19.7.1
 py==1.4.33
 PyJWT==1.5.2
