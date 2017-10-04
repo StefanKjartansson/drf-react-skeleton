@@ -7,7 +7,7 @@ djangorestframework-jwt==1.11.0
 gunicorn==19.7.1
 py==1.4.34
 PyJWT==1.5.3
-pytest==3.2.2
+pytest==3.2.3
 pytest-django==3.1.2
 six==1.11.0
 wheel==0.30.0
