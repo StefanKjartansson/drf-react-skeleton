@@ -5,7 +5,7 @@ django-filter==1.1.0
 djangorestframework==3.7.3
 djangorestframework-jwt==1.11.0
 gunicorn==19.7.1
-py==1.5.1
+py==1.5.2
 PyJWT==1.5.3
 pytest==3.2.5
 pytest-django==3.1.2
