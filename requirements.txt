@@ -1,5 +1,5 @@
 dj-database-url==0.4.2
-Django==2.0.1
+Django==2.0.2
 django-extensions==1.9.9
 django-filter==1.1.0
 djangorestframework==3.7.7
