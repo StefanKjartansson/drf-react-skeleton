@@ -10,4 +10,4 @@ PyJWT==1.7.1
 pytest==6.0.1
 pytest-django==3.9.0
 six==1.15.0
-wheel==0.34.2
+wheel==0.35.0
